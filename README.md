@@ -17,3 +17,9 @@ az group list
 az resource list --query "[?resourceGroup=='rg-ne-rpc-demo-dev'].{ name: name, flavor: kind, resourceType: type }" --output table
 
 az resource list --query "[?resourceGroup=='rg-ne-rpc-demo-test'].{ name: name, flavor: kind, resourceType: type }" --output table
+
+az storage blob list --container-name data -o table --account-name nerpcdemodev
+
+### Powershell...
+
+Invoke-RestMethod -Method 'Post' -Body $body0101 -Uri $url

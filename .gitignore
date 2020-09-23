@@ -1,6 +1,14 @@
 **/bin
 **/obj
 
+**/publish
+
 *.bak
 *.bak.attrs
 pulumi/.pulumi/backups/
+
+.ionide
+.vs
+
+*.user
+*.suo
