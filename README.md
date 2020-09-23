@@ -12,7 +12,7 @@ docker run -it -v c:\dev\ne-rpc-2020:/repo -p 9000:9000 gitpitch/desktop:pro
 
 ### az snippets
 
-az group list
+az group list -o table
 
 az resource list --query "[?resourceGroup=='rg-ne-rpc-demo-dev'].{ name: name, flavor: kind, resourceType: type }" --output table
 
