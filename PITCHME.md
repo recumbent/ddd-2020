@@ -339,7 +339,19 @@ Note:
 
 I promised the same for AWS as well...
 
+---?code=code/050-Init-Aws/MyStack.cs&lang=csharp code-max code-wrap
+
+@[2](Using Pulumi.Aws.*)
+@[6-13](Is AWS, you always need an S3 bucket)
+
+Note:
+
+The templated code for AWS is fairly minimal too
+
+Lets add the lambda
+
 ---
+
 
 Now if we go look at azure we see a single resource group and in that resource group the storage account - I also see that those resources have a random suffix to avoid collisions and to make some actions easier and safer. I happen to not like this much, but that's a more complicated conversation so lets stick with the default behaviour.
 
