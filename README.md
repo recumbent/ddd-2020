@@ -22,4 +22,4 @@ az storage blob list --container-name data -o table --account-name nerpcdemodev
 
 ### Powershell...
 
-Invoke-RestMethod -Method 'Post' -Body $body0101 -Uri $url
+Invoke-RestMethod -Method 'Post' -contenttype "application/json" -Body $body0101 -Uri 

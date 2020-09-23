@@ -1,0 +1,6 @@
+POST https://app696f5c57.azurewebsites.net/api/lookup
+
+{
+    "clientId": 1,
+    "quoteId": 1
+}
