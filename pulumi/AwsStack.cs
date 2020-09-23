@@ -11,27 +11,40 @@ class AwsStack : Stack
         var config = new Pulumi.Config();
         var deployTo = config.Require("DeployTo");
 
+        var tags = new InputMap<string>
+            {
+                { "User:Project",     Pulumi.Deployment.Instance.ProjectName },
+                { "User:Stack",       Pulumi.Deployment.Instance.StackName }
+            };
+
         // Create an AWS resource (S3 Bucket)
-        var dataBucket = new Bucket($"ne-rpc-demo-data-{deployTo}");
+        var dataBucket = new Bucket(
+            $"ne-rpc-demo-data-{deployTo}",
+            new BucketArgs
+            {
+                Tags = tags
+            }
+        );
 
         // Create a role to run the lambda
         var lambdaRole = new Role("lambdaRole", new RoleArgs
         {
             AssumeRolePolicy =
-        @"{
-                ""Version"": ""2012-10-17"",
-                ""Statement"": [
-                    {
-                        ""Action"": ""sts:AssumeRole"",
-                        ""Principal"": {
-                            ""Service"": ""lambda.amazonaws.com""
-                        },
-                        ""Effect"": ""Allow"",
-                        ""Sid"": """"
-                    }
-                ]
-            }"
-        });
+            @"{
+                    ""Version"": ""2012-10-17"",
+                    ""Statement"": [
+                        {
+                            ""Action"": ""sts:AssumeRole"",
+                            ""Principal"": {
+                                ""Service"": ""lambda.amazonaws.com""
+                            },
+                            ""Effect"": ""Allow"",
+                            ""Sid"": """"
+                        }
+                    ]
+                }"
+            }
+        );
 
         var logPolicy = new RolePolicy("lambdaLogPolicy", new RolePolicyArgs
         {
@@ -76,22 +89,26 @@ class AwsStack : Stack
         }}")
         });
 
-        var quoteFetch = new Function("quote-fetch-lambda", new FunctionArgs
-        {
-            Runtime = "dotnetcore3.1",
-            Code = new FileArchive("../aws-lambda/publish"),
-            Handler = "aws-lambda::Recumbent.Demo.Aws.AwsLambda::FunctionHandler",
-            Environment = new FunctionEnvironmentArgs
+        var quoteFetch = new Function(
+            "quote-fetch-lambda", 
+            new FunctionArgs
             {
-                Variables = new InputMap<string>
+                Runtime = "dotnetcore3.1",
+                Code = new FileArchive("../aws-lambda/publish"),
+                Handler = "aws-lambda::Recumbent.Demo.Aws.AwsLambda::FunctionHandler",
+                Environment = new FunctionEnvironmentArgs
                 {
-                    { "QuoteServerHost", "https://vn651r8t22.execute-api.eu-west-2.amazonaws.com/Prod" },
-                    { "DataBucket", dataBucket.Id },
-                }              
-            },
-            Role = lambdaRole.Arn,
-            Timeout = 60
-        }); ;
+                    Variables = new InputMap<string>
+                    {
+                        { "QuoteServerHost", "https://vn651r8t22.execute-api.eu-west-2.amazonaws.com/Prod" },
+                        { "DataBucket", dataBucket.Id },
+                    }              
+                },
+                Role = lambdaRole.Arn,
+                Timeout = 60,
+                Tags = tags
+            }
+        );
 
 
         // Export useful things

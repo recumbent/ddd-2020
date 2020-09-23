@@ -1,3 +1,4 @@
 encryptionsalt: v1:iep591KAvf0=:v1:6RWQ3gsZxE1uxvce:iRJBvC4CqekjJHt8S2u5ygbbU1Bjeg==
 config:
+  NE-RPC-Demo:DeployTo: dev
   aws:region: eu-west-2
