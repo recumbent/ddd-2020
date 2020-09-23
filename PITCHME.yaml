@@ -3,13 +3,14 @@
 # PITCHME-DOT-YAML-SETTINGS-THEME-BUILDER-GENERATED-START
 theme            : template
 theme-background : [ "#172A3B" ]
-theme-headline   : [ "Raleway", "#A6AFE3", "none", "#FFFFFF", "100", "130", "15" ]
+theme-headline   : [ "Raleway", "#A6AFE3", "none", "#FFFFFF", "80", "130", "15" ]
 theme-byline     : [ "Raleway", "#FFFFFF", "none", "#A6AFE3", "100", "120", "15" ]
 theme-text       : [ "Ubuntu", "#FFFFFF", "none", "#F9F871", "100", "110", "15" ]
 theme-links      : [ "#5289F7", "#5254F7" ]
 theme-code       : [ "Source Code Pro", "100", "120" ]
 highlight        : hybrid
-theme-controls   : [ "" ]
+theme-controls   : [ "inherit" ]
 theme-margins    : [ "0", "15px" ]
-layout           : center
+layout           : top-left
 # PITCHME-DOT-YAML-SETTINGS-THEME-BUILDER-GENERATED-END
+title            : NE-RPC Back 2 Sk00l - 2020

@@ -94,13 +94,15 @@ Note:
 
 Coming back to our core problem - delivering value by making deployed solutions available - there is a strong argument, outlined in the excellent Team Topologies, that delivery teams (5 to 9 people) should own solutions end to end, if you write it then you should deploy it and you should operate it.
 
-# Cognotive Load
+---
 
-The thinker
+# Cognitive Load
+
+![The thinker](images/thinker.jpg)
 
 Note:
 
-The limiting factor on what a team can own and operate is how much cognative load it can support, what it can comfortably think about. Having to understand ARM or Cloudformation or the YAML for Google's Cloud Deployment Manager will consume a goodly chunk of that available load.
+A key limiting factor on what an individual and a team can own and operate is how much cognitive load it can support, what it can comfortably think about. Having to understand ARM or Cloudformation or the YAML for Google's Cloud Deployment Manager will consume a goodly chunk of that available load.
 
 So we want something that is both more flexible than XML or YAML and that is more easily understood by the developers on a delivery team - in other words source code.
 
@@ -184,8 +186,6 @@ Note:
 
 When we use pulumi it needs to store state - to be able to keep track of what is deployed where and what things are called. By default it expects you to use their service - not unreasonably - but as that is not free, you can also store data locally or in cloud storage. Regardless we need to login to a backend, I'll use local storage for the demos but I'd strongly advocate looking at Pulumi's paid services (I'm advocating for that at work)
 
-So we can do pulumi login cloud azureblob etc
-
 Then, we create a new folder for our project and we run the init command - when we do we can specify a template, we're targetting azure and want to write C# code so... 
 
 md pulumi
@@ -197,17 +197,23 @@ pulumi init azure-csharp
 
 And we end up with a standard C# project - something that looks like a console app.
 
----
+---?code=code/010-Pulumi-new/Program.cs&lang=cs code-max
 
-### New project
 
 Note:
 
 What's in this? Lets take a look.
 
-The entry point is in program.cs, at this point it does very little, it instantiates a class and then calls it
+The entry point is in program.cs, at this point it does very little, it magically invokes a class - its what's in that class that is interesting
 
-The more interesting part of the story is in the class itself - this is where we define the resources we want to exist.
+---?code=code/010-Pulumi-new/MyStack.cs&lang=cs code-max
+
+@[9-10](Creates a resource group)
+@[13-18](Creates a storage account in the resource group)
+@[20-21](Exports the connection string)
+@[24-25](Outputs are defined as properties)
+
+Note:
 
 Going top down, we have a resource group
 
@@ -215,9 +221,11 @@ A storage account - in the resource group (the location is pulled from the confi
 
 Finally we set the connection string as an output - which is defined as a property on the class.
 
-It tells me that it wants to create three things, first is the stack itself, second is the resource group and third is a storage account.
+This corresponds to the output from preview we saw earlier.
 
-That's cool, but I actually want more than one stack - for demo purposes lets have dev and test (I'd expect a few more in real life). We've got our dev stack setup so lets add another and then change the code to pick up stack name
+Also, for all of this we rely on Pulumi's magic naming which will append a 8 character random string to the name
+
+I want to make a few changes before I deploy that though
 
 ...pulumi stack add...
 
