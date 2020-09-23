@@ -52,8 +52,10 @@ To be effective in delivering we can take guidance from the experience of others
 
 ![Continous Delivery](images/Continuous-Delivery.jpg)
 
-Note'
-This leads us to the principals in Continuous Delivery by Jez Humble and Dave Farley that we build and package _once_ and deploy to multiple environments as needed but that we always deploy in the same way whether it be to the dev environment or to staging or to production. And that we automate. Everything. We automate things to make them trivially repeatable and that has to include deployment.
+Note:
+
+- This leads us to the principals in Continuous Delivery by Jez Humble and Dave Farley that we build and package _once_ and deploy to multiple environments as needed but that we always deploy in the same way whether it be to the dev environment or to staging or to production.
+- I could talk off the cuff about this all day and will happily do so over beers but a key principal is...
 
 ---
 
@@ -61,7 +63,10 @@ This leads us to the principals in Continuous Delivery by Jez Humble and Dave Fa
 
 Note:
 
-So how do we automate definition of infrastructure or the definition of deployed systems (where there is considerable overlap).
+- That we automate. Everything. 
+- We automate things to make them trivially repeatable and that has to include deployment.
+- If you want to automate everything then using a cloud web console isn't the answer
+- So how do we automate definition of infrastructure or the definition of deployed systems (where there is considerable overlap).
 
 ---
 
@@ -73,10 +78,8 @@ There are a couple of approaches - we can "script" things - all of the cloud pro
 
 ---
 
-# Desired State
+![Make it so](images/make-it-so.jpg)
 
-* Make it so!
-  
 Note:
 
 Better is to take the Picard approach, to define what our infrastructure should look like and then tell someone else to "Make it so" - this is "desired state configuration".
@@ -152,16 +155,70 @@ At this point its clear that defining our infrastructure in a text file is a goo
 ## Pulumi
 
 * Language independence
-* Platform independence
 * Deployment management
+* Platform independence
 
 Note:
 
 On top of this Pulumi gives us
 
 - A degree of language independence
-- A degree of target platform independence
 - A service/system for managing deployments
+- A degree of target platform independence
+
+---
+
+## Providers 1
+
+![Pulumi Core Providers](images/pulumi-providers-01.png)
+
+Note:
+
+The usual suspects
+
+---
+
+## Providers 2
+
+![Pulumi Cloud Providers](images/pulumi-providers-02.png)
+
+Note:
+
+More cloud providers
+
+---
+
+## Providers 3
+
+![Pulumi Cloud Providers](images/pulumi-providers-03.png)
+
+Note:
+
+Infrastructure
+
+---
+
+## Providers 4
+
+![Pulumi Cloud Providers](images/pulumi-providers-04.png)
+
+Note:
+
+And other things
+
+---
+
+## Pulumi _all_ the things
+
+Note:
+
+I want to use pulumi for everything... think about this in the context of onboarding and off-boarding a developer, and the access and privileges they need.
+
+---
+
+# How...
+
+Note:
 
 That's probably enough why - although I could easily fill the rest of my time, but I promised some code and I think that seeing code is important
 
@@ -169,13 +226,17 @@ So time for some how.
 
 ---
 
-### Architecture Diagram
+@snap[center span-100]
+![Architecture](images/Architecture.png)
+@snapend
 
 Note:
 
-Suppose we have an application something like this - a service that retrieves some data, transforms it, caches it in a data store and returns the result.
+Suppose we have an application something like this - we make a request, it looks to see if already has the answer - if not it goes to a 3rd party service, pulls the appropriate data, transforms it, caches it in a data store and then returns the result.
 
-If I were building this for work my first steps would be to deploy a "hello world" version through to production, so that's what we'll do. In the real world that would involve setting up my CI pipeline too - but that's a different presentation.
+For this example I'll use a function for the service, and a blob or S3 for the storage.
+
+This is a very simplified version of real systems that I've worked on
 
 ---
 
@@ -190,17 +251,6 @@ Once installed
 ---?terminal=sessions/pulumi-new.cast&font=16px&theme=monokai&poster=npt:0:00&color=#DDDDDD
 
 Note:
-
-`> pulumi version`
-
-When we use pulumi it needs to store state - to be able to keep track of what is deployed where and what things are called. By default it expects you to use their service - not unreasonably - but as that is not free, you can also store data locally or in cloud storage. Regardless we need to login to a backend, I'll use local storage for the demos but I'd strongly advocate looking at Pulumi's paid services (I'm advocating for that at work)
-
-Then, we create a new folder for our project and we run the init command - when we do we can specify a template, we're targetting azure and want to write C# code so... 
-
-md pulumi
-cd pulumi
-
-pulumi init azure-csharp
 
 ...talk over prompts...
 
@@ -359,7 +409,7 @@ The templated code for AWS is fairly minimal too
 
 Lets add the lambda
 
----?code=code/060-Aws-lamba/AwsStack.cs&lang=csharp code-max code-wrap code-reveal-slow
+---?code=code/060-Aws-lambda/AwsStack.cs&lang=csharp code-max code-wrap code-reveal-slow
 
 @[11-12](Same as for Azure)
 @[14-18](Tags because no resource group)
@@ -407,7 +457,31 @@ Ideally I'd add an API Gateway and show you this working - but I'd forgotten how
 
 ## One last example, 
 
-* from azure, in F# - getting a bit meta.
+* Real code (almost - names changed etc)
+* for azure, in F# - getting a bit meta.
+
+Note:
+
+Everything in this turned out to be surprisingly straightforward, the problem was in knowing what to do not in actually doing it.
+
+---?code=code/070-Meta/Program.fs&lang=fsharp code-max code-wrap code-reveal-slow
+
+@[201-204](Combine the output from two loads of infrastructure)
+@[36-50](Add DNS for a domain)
+@[26-34](Add records for sendgrid)
+@[21-24](Create a cname)
+@[52-199 zoom-01](Pulumi infrastructure)
+@[12-19](List of users)
+@[61-66](Get a list of user ObjectIds)
+@[68-77](Create a group in AzureAD)
+@[91-98](SP for automation)
+@[100-109](Let the SP create things)
+@[165](Want to create a key vault)
+@[141-155](Need a list of key permissions - code)
+@[146-148](And secret permissions)
+@[150-156](For a policy)
+@[167-175](Creating the key vault)
+@[177-186](And a key)
 
 Note:
 
@@ -427,13 +501,35 @@ Over time I hope we'll be able to apply this to all our dev infrastructure - we'
 
 ---
 
-# Enough already?
+# Enough already...?
 
 Note:
 
-Ok... so that barely touches the surface of what's possible - but this is _all code_ and hopefully code that you understand be that .NET, Python, Go, or Typescript. 
+Ok... so that barely touches the surface of what's possible - but this is _all code_ and hopefully code that you understand be that C#, F#, Python, Go, or Typescript. 
 
-You can self host with a back end in cloud storage - or I would strongly urge taking a look at the the hosted service.
+---
+
+## What Have I missed
+
+* Secrets
+* Passing values between stacks
+* Taking advantage of code to remove boilerplate and enforce standards
+* Shiny new Automation API
+
+---
+
+## Open questions
+
+* How to architect your _stacks_
+
+---
+
+## Potential issues
+
+* Updates to providers
+  * _But_ next gen providers are coming
+* Independent of the cloud providers
+* Documentation... (impossible problem CDK is the same)
 
 ---
 
