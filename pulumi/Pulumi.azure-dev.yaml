@@ -1,0 +1,4 @@
+encryptionsalt: v1:C90gBTW9gN4=:v1:BqfxQLSe5K4lA1n5:ynZygNNWH9JXlmB8mUwKaNHyM8DOcQ==
+config:
+  NE-RPC-Demo:DeployTo: dev
+  azure:location: UKSouth
