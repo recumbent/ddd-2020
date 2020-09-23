@@ -1,0 +1,17 @@
+{
+    "kind": "update",
+    "startTime": 1600876013,
+    "message": "",
+    "environment": {
+        "exec.kind": "cli"
+    },
+    "config": {
+        "NE-RPC-Demo:DeployTo": "dev",
+        "aws:region": "eu-west-2"
+    },
+    "result": "succeeded",
+    "endTime": 1600876037,
+    "resourceChanges": {
+        "create": 6
+    }
+}
