@@ -1,0 +1,176 @@
+{
+    "version": 3,
+    "checkpoint": {
+        "stack": "azure-dev",
+        "latest": {
+            "manifest": {
+                "time": "2020-09-23T13:16:41.9481449+01:00",
+                "magic": "025dfc1d117429348e6e7b803d2a4553ccb696ddad474136fcac4f7fa8123e00",
+                "version": "v2.10.2"
+            },
+            "secrets_providers": {
+                "type": "passphrase",
+                "state": {
+                    "salt": "v1:C90gBTW9gN4=:v1:BqfxQLSe5K4lA1n5:ynZygNNWH9JXlmB8mUwKaNHyM8DOcQ=="
+                }
+            },
+            "resources": [
+                {
+                    "urn": "urn:pulumi:azure-dev::NE-RPC-Demo::pulumi:pulumi:Stack::NE-RPC-Demo-azure-dev",
+                    "custom": false,
+                    "type": "pulumi:pulumi:Stack",
+                    "outputs": {
+                        "StorageAccountName": "nerpcdemodev14524878"
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:azure-dev::NE-RPC-Demo::pulumi:providers:azure::default_3_22_0",
+                    "custom": true,
+                    "id": "e5074ed8-c602-43dc-a4e2-91ac4f38ed27",
+                    "type": "pulumi:providers:azure",
+                    "inputs": {
+                        "location": "UKSouth",
+                        "version": "3.22.0"
+                    },
+                    "outputs": {
+                        "location": "UKSouth",
+                        "version": "3.22.0"
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:azure-dev::NE-RPC-Demo::azure:core/resourceGroup:ResourceGroup::rg-ne-rpc-demo-dev",
+                    "custom": true,
+                    "id": "/subscriptions/fe5ebcee-ad0c-416c-9902-38b77e4c8a82/resourceGroups/rg-ne-rpc-demo-dev",
+                    "type": "azure:core/resourceGroup:ResourceGroup",
+                    "inputs": {
+                        "__defaults": [
+                            "location"
+                        ],
+                        "location": "UKSouth",
+                        "name": "rg-ne-rpc-demo-dev"
+                    },
+                    "outputs": {
+                        "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":5400000000000,\"delete\":5400000000000,\"read\":300000000000,\"update\":5400000000000}}",
+                        "id": "/subscriptions/fe5ebcee-ad0c-416c-9902-38b77e4c8a82/resourceGroups/rg-ne-rpc-demo-dev",
+                        "location": "uksouth",
+                        "name": "rg-ne-rpc-demo-dev",
+                        "tags": {}
+                    },
+                    "parent": "urn:pulumi:azure-dev::NE-RPC-Demo::pulumi:pulumi:Stack::NE-RPC-Demo-azure-dev",
+                    "provider": "urn:pulumi:azure-dev::NE-RPC-Demo::pulumi:providers:azure::default_3_22_0::e5074ed8-c602-43dc-a4e2-91ac4f38ed27",
+                    "propertyDependencies": {
+                        "name": null
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:azure-dev::NE-RPC-Demo::azure:storage/account:Account::nerpcdemodev",
+                    "custom": true,
+                    "id": "/subscriptions/fe5ebcee-ad0c-416c-9902-38b77e4c8a82/resourceGroups/rg-ne-rpc-demo-dev/providers/Microsoft.Storage/storageAccounts/nerpcdemodev14524878",
+                    "type": "azure:storage/account:Account",
+                    "inputs": {
+                        "__defaults": [
+                            "accountKind",
+                            "allowBlobPublicAccess",
+                            "enableHttpsTrafficOnly",
+                            "isHnsEnabled",
+                            "location",
+                            "minTlsVersion",
+                            "name"
+                        ],
+                        "accountKind": "StorageV2",
+                        "accountReplicationType": "LRS",
+                        "accountTier": "Standard",
+                        "allowBlobPublicAccess": false,
+                        "enableHttpsTrafficOnly": true,
+                        "isHnsEnabled": false,
+                        "location": "uksouth",
+                        "minTlsVersion": "TLS1_0",
+                        "name": "nerpcdemodev14524878",
+                        "resourceGroupName": "rg-ne-rpc-demo-dev"
+                    },
+                    "outputs": {
+                        "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":3600000000000,\"delete\":3600000000000,\"read\":300000000000,\"update\":3600000000000},\"schema_version\":\"2\"}",
+                        "accessTier": "Hot",
+                        "accountKind": "StorageV2",
+                        "accountReplicationType": "LRS",
+                        "accountTier": "Standard",
+                        "allowBlobPublicAccess": false,
+                        "blobProperties": null,
+                        "enableHttpsTrafficOnly": true,
+                        "id": "/subscriptions/fe5ebcee-ad0c-416c-9902-38b77e4c8a82/resourceGroups/rg-ne-rpc-demo-dev/providers/Microsoft.Storage/storageAccounts/nerpcdemodev14524878",
+                        "identity": null,
+                        "isHnsEnabled": false,
+                        "location": "uksouth",
+                        "minTlsVersion": "TLS1_0",
+                        "name": "nerpcdemodev14524878",
+                        "networkRules": {
+                            "bypasses": [
+                                "AzureServices"
+                            ],
+                            "defaultAction": "Allow",
+                            "ipRules": [],
+                            "virtualNetworkSubnetIds": []
+                        },
+                        "primaryAccessKey": "0yLl+d55F/k3POP7OGRu10kWxul1F7ir9u3sM9eBred1rxyMcvFL8Y3Quk4uXOQ570yt61g3Xl8ydmNqRT6xHw==",
+                        "primaryBlobConnectionString": "DefaultEndpointsProtocol=https;BlobEndpoint=https://nerpcdemodev14524878.blob.core.windows.net/;AccountName=nerpcdemodev14524878;AccountKey=0yLl+d55F/k3POP7OGRu10kWxul1F7ir9u3sM9eBred1rxyMcvFL8Y3Quk4uXOQ570yt61g3Xl8ydmNqRT6xHw==",
+                        "primaryBlobEndpoint": "https://nerpcdemodev14524878.blob.core.windows.net/",
+                        "primaryBlobHost": "nerpcdemodev14524878.blob.core.windows.net",
+                        "primaryConnectionString": "DefaultEndpointsProtocol=https;AccountName=nerpcdemodev14524878;AccountKey=0yLl+d55F/k3POP7OGRu10kWxul1F7ir9u3sM9eBred1rxyMcvFL8Y3Quk4uXOQ570yt61g3Xl8ydmNqRT6xHw==;EndpointSuffix=core.windows.net",
+                        "primaryDfsEndpoint": "https://nerpcdemodev14524878.dfs.core.windows.net/",
+                        "primaryDfsHost": "nerpcdemodev14524878.dfs.core.windows.net",
+                        "primaryFileEndpoint": "https://nerpcdemodev14524878.file.core.windows.net/",
+                        "primaryFileHost": "nerpcdemodev14524878.file.core.windows.net",
+                        "primaryLocation": "uksouth",
+                        "primaryQueueEndpoint": "https://nerpcdemodev14524878.queue.core.windows.net/",
+                        "primaryQueueHost": "nerpcdemodev14524878.queue.core.windows.net",
+                        "primaryTableEndpoint": "https://nerpcdemodev14524878.table.core.windows.net/",
+                        "primaryTableHost": "nerpcdemodev14524878.table.core.windows.net",
+                        "primaryWebEndpoint": "https://nerpcdemodev14524878.z33.web.core.windows.net/",
+                        "primaryWebHost": "nerpcdemodev14524878.z33.web.core.windows.net",
+                        "queueProperties": {
+                            "corsRules": [],
+                            "hourMetrics": {
+                                "enabled": true,
+                                "includeApis": true,
+                                "retentionPolicyDays": 7,
+                                "version": "1.0"
+                            },
+                            "logging": {
+                                "delete": false,
+                                "read": false,
+                                "retentionPolicyDays": 0,
+                                "version": "1.0",
+                                "write": false
+                            },
+                            "minuteMetrics": {
+                                "enabled": false,
+                                "includeApis": false,
+                                "retentionPolicyDays": 0,
+                                "version": "1.0"
+                            }
+                        },
+                        "resourceGroupName": "rg-ne-rpc-demo-dev",
+                        "secondaryAccessKey": "Qop7KMD4VReorEXgYOI4TFk6Df7g2sf0QnvqKm7sWL19T6JjykMD06/Kr2+KzE+4/WAp15WVRIqZ73wfNJciPg==",
+                        "secondaryBlobConnectionString": "",
+                        "secondaryConnectionString": "DefaultEndpointsProtocol=https;AccountName=nerpcdemodev14524878;AccountKey=Qop7KMD4VReorEXgYOI4TFk6Df7g2sf0QnvqKm7sWL19T6JjykMD06/Kr2+KzE+4/WAp15WVRIqZ73wfNJciPg==;EndpointSuffix=core.windows.net",
+                        "secondaryLocation": "",
+                        "staticWebsite": null,
+                        "tags": {}
+                    },
+                    "parent": "urn:pulumi:azure-dev::NE-RPC-Demo::pulumi:pulumi:Stack::NE-RPC-Demo-azure-dev",
+                    "dependencies": [
+                        "urn:pulumi:azure-dev::NE-RPC-Demo::azure:core/resourceGroup:ResourceGroup::rg-ne-rpc-demo-dev"
+                    ],
+                    "provider": "urn:pulumi:azure-dev::NE-RPC-Demo::pulumi:providers:azure::default_3_22_0::e5074ed8-c602-43dc-a4e2-91ac4f38ed27",
+                    "propertyDependencies": {
+                        "accountReplicationType": null,
+                        "accountTier": null,
+                        "resourceGroupName": [
+                            "urn:pulumi:azure-dev::NE-RPC-Demo::azure:core/resourceGroup:ResourceGroup::rg-ne-rpc-demo-dev"
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}
