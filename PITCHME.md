@@ -42,11 +42,18 @@ So we have a definition of delivering value that says we need a deployed solutio
 
 ---
 
-# Effective?
+![Accelerate](images/Accelerate.jpg)
 
 Note:
 
-To be effective in delivering we can take guidance from the experience of others - in Accelerate by Dr Nicole Forzgren et al we have clear evidence that the time to go from committed code to deployed application correlates very strongly with high performing teams. This leads us to the principals in Continuous Delivery by Jez Humble and Dave Farley that we build and package _once_ and deploy to multiple environments as needed but that we always deploy in the same way whether it be to the dev environment or to staging or to production. And that we automate. Everything. We automate things to make them trivially repeatable and that has to include deployment.
+To be effective in delivering we can take guidance from the experience of others - in Accelerate by Dr Nicole Forzgren et al we have clear evidence that the time to go from committed code to deployed application correlates very strongly with high performing teams. 
+
+---
+
+![Continous Delivery](images/Continuous-Delivery.jpg)
+
+Note'
+This leads us to the principals in Continuous Delivery by Jez Humble and Dave Farley that we build and package _once_ and deploy to multiple environments as needed but that we always deploy in the same way whether it be to the dev environment or to staging or to production. And that we automate. Everything. We automate things to make them trivially repeatable and that has to include deployment.
 
 ---
 
@@ -78,17 +85,19 @@ The good news is that the public cloud providers support this approach - they ha
 
 ---
 
-# Insert Azure ARM here
+@code[zoom-01 json](code/arm-template.json)
 
 Note:
 
-This is the azure ARM template for my sample system (X lines long). The equivalent in AWS Cloudformation YAML will be as large
+This is the azure ARM template for my sample system (over 300 lines long). The equivalent in AWS Cloudformation YAML will be a similar size
 
-The problem with these templates is that they are hard to read and therefore hard to maintain - there is a huge amount of duplicated boilerplate and not a small amount or arcane cleverness where programming concepts are added to markup to overcome the limitiations of straight markup. So the templates require you to understand not only the infrastructure you're targetting but also effectively a whole new language used to create and configure that infrastructure.
+The problem with these templates is that they are hard to read and therefore hard to maintain - there is a huge amount of duplicated boilerplate and not a small amount of arcane cleverness where programming concepts are added to markup to overcome the limitiations of straight markup. So the templates require you to understand not only the infrastructure you're targetting but also effectively a whole new language used to create and configure that infrastructure.
 
 ---
 
-# Team Topologies
+### Team Topologies
+
+![Team Topologies](images/TeamTopologies.jpg)
 
 Note:
 
@@ -96,7 +105,7 @@ Coming back to our core problem - delivering value by making deployed solutions 
 
 ---
 
-# Cognitive Load
+### Cognitive Load
 
 ![The thinker](images/thinker.jpg)
 
@@ -374,9 +383,33 @@ Whilst the types and the details vary the patterns are the same, the language is
 
 # Pulumi Up one more time...
 
+---?terminal=sessions/aws-lambda.cast&font=16px&theme=monokai&poster=npt:0:00&color=#DDDDDD
+
+Note:
+
+Non-interactive because you should be running this as part of your CI pipeline
+
+Ideally I'd add an API Gateway and show you this working - but I'd forgotten how many hoops one has to jump through so I'll spare you that.
+
 ---
 
-One last example, from azure, in F# - getting a bit meta.
+### It is deployed
+
+![Deployed lambda](images/aws-01.png)
+
+---
+
+### And it does work
+
+![Execution result](images/aws-02.png)
+
+---
+
+## One last example, 
+
+* from azure, in F# - getting a bit meta.
+
+Note:
 
 I needed to create a group in AzureAD to control access to a key vault.
 
@@ -392,6 +425,26 @@ When we need to add or remove users we change that list, run the stack, and we'r
 
 Over time I hope we'll be able to apply this to all our dev infrastructure - we'll import the exist resources etc into stacks and then build out from there. There are some security concerns, but equally there is a huge upside to working this way - in particular onboarding will be a matter of adding a user to the right list and working from there. But equally adding a new repository with the rules we require should be the same, add the name to the right list, go...
 
+---
+
+# Enough already?
+
+Note:
+
 Ok... so that barely touches the surface of what's possible - but this is _all code_ and hopefully code that you understand be that .NET, Python, Go, or Typescript. 
 
-You can self host - or I would strongly urge taking a look at the value propoposition of the hosted service.
+You can self host with a back end in cloud storage - or I would strongly urge taking a look at the the hosted service.
+
+---
+
+## Resources
+
+* https://gitpitch.com/recumbent/ne-rpc-2020/main
+* https://pulumi.com
+* https://github.com/pulumi
+  * https://github.com/pulumi/examples
+  * Pulumi Community Slack
+  * https://cloudengineering.heysummit.com/ - 7th & 8th October 2020
+* https://twitter.com/recumbent
+* https://blog.murph.me.uk - when I've recovered...
+
