@@ -319,21 +319,27 @@ Note:
 
 This would be better "live" but...
 
+---?terminal=sessions/add-azure-function.cast&font=16px&theme=monokai&poster=npt:0:00&color=#DDDDDD
+
+Note:
+
+Two different instances of the stack, zero code changes - same code for both
+
 ---
 
-We've defined a stack, and deployed it to azure
+### Two resource groups
 
-...pulumi stack add...
+![Two resource groups](images/resource-group-003.png)
 
-We'll specify the target environment as a config variable - lets call it "deployto" (because environment is so badly overloaded)
+---
 
-Appropriate code to parameterise instantiating the stack
+# AWS
 
-Lets switch back to the dev stack, and then lets go look at my subscription in Azure... what we see is a whole load of nothing.
+Note:
 
-To create the resources we run pulumi up
+I promised the same for AWS as well...
 
-...pulumi up...
+---
 
 Now if we go look at azure we see a single resource group and in that resource group the storage account - I also see that those resources have a random suffix to avoid collisions and to make some actions easier and safer. I happen to not like this much, but that's a more complicated conversation so lets stick with the default behaviour.
 
