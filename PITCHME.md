@@ -247,6 +247,41 @@ Note:
 Its time we actually deployed something
 
 ---
+
+### Empty Subscription
+
+![Resource Groups](images/no-resource-groups.png)
+
+---?terminal=sessions/pulumi-up.cast&font=16px&theme=monokai&poster=npt:0:00&color=#DDDDDD
+
+Note:
+
+Deploy the tweaked stack
+
+---
+
+### It lives!
+
+![Resource Groups](images/resource-group-002.png)
+
+---?code=code/030-Stack-json/azure-dev.json&lang=json code-max code-wrap
+
+@[4](This is the azure-dev stack)
+@[41-44](This defines the resource group)
+@[66-69](Storage account)
+
+Note:
+
+Look at the urn
+
+---
+
+# Something useful?
+
+Note:
+
+We've defined a stack, and deployed it to azure
+
 ...pulumi stack add...
 
 We'll specify the target environment as a config variable - lets call it "deployto" (because environment is so badly overloaded)
