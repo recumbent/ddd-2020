@@ -227,12 +227,26 @@ Also, for all of this we rely on Pulumi's magic naming which will append a 8 cha
 
 I want to make a few changes before I deploy that though
 
+---?code=code/020-Intial-deploy/AzureStack.cs&lang=cs code-max code-reveal-slow code-wrap
+
+@[5-7](Rename the stack)
+@[9-10](Read `DeployTo` from stack config)
+@[12-17](Explicitly name the resource group)
+@[27-28](Save the name not the connection string)
+
+Note:
+
+The connection string is supposed to be a secret!
+
 ---
 
-@diff[span-100](7426f2c60a0c08581b70cb6aa513fb90ca38ba38)
+# First Deployment
+
+Note:
+
+Its time we actually deployed something
 
 ---
-
 ...pulumi stack add...
 
 We'll specify the target environment as a config variable - lets call it "deployto" (because environment is so badly overloaded)
