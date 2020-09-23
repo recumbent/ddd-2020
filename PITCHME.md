@@ -227,6 +227,12 @@ Also, for all of this we rely on Pulumi's magic naming which will append a 8 cha
 
 I want to make a few changes before I deploy that though
 
+---
+
+@diff[span-100](7426f2c60a0c08581b70cb6aa513fb90ca38ba38)
+
+---
+
 ...pulumi stack add...
 
 We'll specify the target environment as a config variable - lets call it "deployto" (because environment is so badly overloaded)

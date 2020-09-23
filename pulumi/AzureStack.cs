@@ -2,15 +2,18 @@ using Pulumi;
 using Pulumi.Azure.Core;
 using Pulumi.Azure.Storage;
 
-class MyStack : Stack
+class AzureStack : Stack
 {
-    public MyStack()
+    public AzureStack()
     {
+        var config = new Pulumi.Config();
+        var deployTo = config.Require("DeployTo");
+        
         // Create an Azure Resource Group
-        var resourceGroup = new ResourceGroup("resourceGroup");
+        var resourceGroup = new ResourceGroup($"rg-ne-rpc-demo-{deployTo}-");
 
         // Create an Azure Storage Account
-        var storageAccount = new Account("storage", new AccountArgs
+        var storageAccount = new Account($"nerpcdemo{deployTo}", new AccountArgs
         {
             ResourceGroupName = resourceGroup.Name,
             AccountReplicationType = "LRS",
