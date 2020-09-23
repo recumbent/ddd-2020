@@ -1,0 +1,17 @@
+{
+    "kind": "update",
+    "startTime": 1600863368,
+    "message": "",
+    "environment": {
+        "exec.kind": "cli"
+    },
+    "config": {
+        "NE-RPC-Demo:DeployTo": "dev",
+        "azure:location": "UKSouth"
+    },
+    "result": "succeeded",
+    "endTime": 1600863402,
+    "resourceChanges": {
+        "create": 3
+    }
+}
