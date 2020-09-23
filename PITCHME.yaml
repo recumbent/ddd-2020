@@ -14,3 +14,4 @@ theme-margins    : [ "0", "15px" ]
 layout           : top-left
 # PITCHME-DOT-YAML-SETTINGS-THEME-BUILDER-GENERATED-END
 title            : NE-RPC Back 2 Sk00l - 2020
+theme-override   : PITCHME.css

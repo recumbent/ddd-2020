@@ -280,6 +280,47 @@ Look at the urn
 
 Note:
 
+Time to add something that actual does somethign
+
+---?code=code/040-Add-function/Startup.fs&lang=fsharp code-max code-wrap
+
+@[26-31](Read config)
+@[22](Use environment variables)
+
+Note:
+
+This is the startup code for the function we're going to deploy - it in F# but that doesn't really matter, what is important is that it needs some config values
+
+---?code=code/040-Add-function/AzureStack.cs&lang=csharp code-max code-reveal-slow code-wrap
+
+@[29-41](Two containers)
+@[43-52](An app service plan)
+@[59](Zip the publish folder)
+@[54-60](Store in zip container)
+@[62](Get the url for the blob)
+@[64-79](Finally create the function)
+@[72-74](Setting values for config)
+@[82](Output the endpoint name)
+
+Note:
+
+Well add the resources to our stack
+
+- Firstly a couple of containers - one for the packaged code and one for the runtime data
+- Secondly an application service plan - the Sku is arbitrary magic
+
+- That's 93 lines including whitespace and you can see the relation between the pieces
+
+---
+
+# Deploy and run
+
+Note:
+
+This would be better "live" but...
+
+---
+
 We've defined a stack, and deployed it to azure
 
 ...pulumi stack add...
