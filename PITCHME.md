@@ -350,63 +350,31 @@ The templated code for AWS is fairly minimal too
 
 Lets add the lambda
 
+---?code=code/060-Aws-lamba/AwsStack.cs&lang=csharp code-max code-wrap code-reveal-slow
+
+@[11-12](Same as for Azure)
+@[14-18](Tags because no resource group)
+@[20-27](Named bucket with tags)
+@[29-47](Role to run the lambda)
+@[49-62](Policy to write logs)
+@[67-90](Policy to let the lambda use S3)
+@[79](Note use of ARN)
+@[97](Zip the publish folder (again))
+@[101-105](Configure with env vars (again))
+@[92-111](Function creation)
+
+Note:
+
+Very similar to azure
+I hate policies - but you can write code and use libraries to simplify these (there's a typescript lib for all the policies)
+
+Whilst the types and the details vary the patterns are the same, the language is the same and you've got IDE help.
+
 ---
 
+# Pulumi Up one more time...
 
-Now if we go look at azure we see a single resource group and in that resource group the storage account - I also see that those resources have a random suffix to avoid collisions and to make some actions easier and safer. I happen to not like this much, but that's a more complicated conversation so lets stick with the default behaviour.
-
-Lest run `pulumi up` again, this time for for the prod stack, and now we have _two_ resource groups and the second also has a storage account... and we see the name is different to match the target environment (as well as having a different random suffix)
-
-Lets add a function (or a container?), 
-
-The function itself I prepared earlier and I'm running `dotnet publish` to put the deployable content in a known location
-
-If we open up an editor of choice / or "look at the code" - then we need to work through a number of steps to get an azure function live (more than I'd like... but sometimes the portals hide a lot of what's necessary from us)
-
-see https://github.com/pulumi/examples/blob/master/azure-cs-functions-consumption/FunctionsStack.cs
-
-We create:
-* An app service plan - this is somewhere for our function to run, the Sku is one of those irritating details you have to "just know"
-* A container to hold the deployment package - the zipped function
-* The deployment package itself - this is being zipped as part of the build, which is not what we want in the real world but will work here
-* And finally the function app itself - which we pass the resource, the app service, a reference to the zip containing the function and details of details of the storage account
-* We make the function endpoint an output
-
-If we save everything, we can run pulumi preview and it will show us the changes we want to make
-
-...pulumi preview...
-
-We're adding various new things, but we're not updating anything that already exists.
-
-Lets run that
-
-...pulumi up...
-
-Now my dev stack has a function - and I can invoke that URL and get the result we expect
-
-But if we look at the prod resource group - that's unchanged.
-
-How does pulumi keep track of all this - if we go look at in the folder created for the back end we'll find a _lot_ of json. In an ideal world one would never actually care about the content, but if we were to take a look one would see that the resources in code are also defined in the json - and that pulumi has given everything a unique identifier
-
-When we run pulumi up (or preview) the _desired_ state is determined from the input source and then the engine compares that desired state with the actual resources and, if appropriate, attempts to make the changes necessary to bring the actual resouces in line with that state.
-
-Each time we allow pulumi to make changes it records checkpoints - so we can run pulumi stack history and see the changes we've made.
-
-The real function is intended to take json as a parameter interact with a different  service and return json as a result. It needs its own container for storage and we need to set environment values so that it can find that container and the service it depends on.
-
-I'll updated my function, so lets add the pulumi code to manage that that... I've deployed my quote service as its own stack, so we'll pull the endpoint URL in.
-
-Here we write stuff out so that the app can read it in, and off we go.
-
-That's it working for azure... what about aws?
-
-I have the same core code but wrapped in a lambda function rather than an azure function - and from there the principals are the same.
-
-I've created a new stack and I'm going to to put a little logic in my program to decide which stack to instantiate. 
-
-The aws stack looks like this... note that I'm adding tags to let me group things, strictly in the real world I'd probbaly deploy to different accounts, but this is still useful.
-
-Whilst the types and the details vary the patterns are the same and you've got help.
+---
 
 One last example, from azure, in F# - getting a bit meta.
 
