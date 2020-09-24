@@ -234,7 +234,7 @@ Note:
 
 Suppose we have an application something like this - we make a request, it looks to see if already has the answer - if not it goes to a 3rd party service, pulls the appropriate data, transforms it, caches it in a data store and then returns the result.
 
-For this example I'll use a function for the service, and a blob or S3 for the storage.
+For this example I'll use a function for the service, and a blob or S3 for the storage - one might more usually use table storage or something like redis
 
 This is a very simplified version of real systems that I've worked on
 
@@ -244,7 +244,7 @@ This is a very simplified version of real systems that I've worked on
 
 Note:
 
-Pulumi operates from the command line - so we install by appropriate means for your dev platform.
+Pulumi operates from the command line - so we install by appropriate means for your dev platform - it runs on Windows, and Mac, and Linux
 
 Once installed
 
@@ -252,9 +252,11 @@ Once installed
 
 Note:
 
-...talk over prompts...
+I have a new almost empty repo
 
-And we end up with a standard C# project - something that looks like a console app.
+I create a folder for the project
+
+I need to login - to define the location for storage
 
 ---?code=code/010-Pulumi-new/Program.cs&lang=cs code-max
 
@@ -466,24 +468,26 @@ Everything in this turned out to be surprisingly straightforward, the problem wa
 
 ---?code=code/070-Meta/Program.fs&lang=fsharp code-max code-wrap code-reveal-slow
 
-@[201-204](Combine the output from two loads of infrastructure)
+@[201-204](Combine the output from two sets  of infrastructure)
 @[36-50](Add DNS for a domain)
 @[26-34](Add records for sendgrid)
 @[21-24](Create a cname)
-@[52-199 zoom-01](Pulumi infrastructure)
+@[52-199](Pulumi infrastructure)
 @[12-19](List of users)
 @[61-66](Get a list of user ObjectIds)
-@[68-77](Create a group in AzureAD)
-@[91-98](SP for automation)
+@[67-77](Create a group in AzureAD)
+@[90-98](SP for automation)
 @[100-109](Let the SP create things)
 @[165](Want to create a key vault)
-@[141-155](Need a list of key permissions - code)
+@[141-145](Need a list of key permissions - code)
 @[146-148](And secret permissions)
 @[150-156](For a policy)
 @[167-175](Creating the key vault)
 @[177-186](And a key)
 
 Note:
+
+This is DNS and the infrastructure we're using to run pulumi
 
 I needed to create a group in AzureAD to control access to a key vault.
 
@@ -544,3 +548,15 @@ Ok... so that barely touches the surface of what's possible - but this is _all c
 * https://twitter.com/recumbent
 * https://blog.murph.me.uk - when I've recovered...
 
+---
+
+## Finally!
+
+Thankyou for listening
+
+Note:
+
+If anyone has survived this long - thankyou for your attention.
+I've only been working with Pulumi for a couple of months so have much to learn - but I will answer any questions I can...
+I'm planning on being around all day if anyone wants to ask me about, well, anything!
+Bye!

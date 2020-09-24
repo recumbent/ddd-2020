@@ -109,6 +109,7 @@ let pulumiInfra () =
             )
         )
 
+
     // Create an Azure Resource Group
     let pulumiResourceGroupName = "pulumi-infrastructure"
     let pulumiResourceGroup = ResourceGroup 
@@ -118,7 +119,7 @@ let pulumiInfra () =
                                      Location = input "UKSouth"
                                     )
                                 )
-
+                                
     // Create an Azure Storage Account for pulumi back end data
     let storageAccount =
         Account("pulumi-storage",
@@ -140,7 +141,7 @@ let pulumiInfra () =
 
     // Need [ input one; input two; input three; ... ]
     let keyPermissions =
-        [ "list"; "create"; "get"; "update"; "encrypt"; "decrypt" ], // Notably no delete permission, which is right, but fun...
+        [ "list"; "create"; "get"; "update"; "encrypt"; "decrypt" ]
         |> List.map input
 
     let secretPermissions =
