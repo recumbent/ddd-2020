@@ -1,0 +1,100 @@
+{
+    "version": 3,
+    "checkpoint": {
+        "stack": "aws-dev",
+        "latest": {
+            "manifest": {
+                "time": "2020-09-24T18:37:09.4797352+01:00",
+                "magic": "025dfc1d117429348e6e7b803d2a4553ccb696ddad474136fcac4f7fa8123e00",
+                "version": "v2.10.2"
+            },
+            "secrets_providers": {
+                "type": "passphrase",
+                "state": {
+                    "salt": "v1:iep591KAvf0=:v1:6RWQ3gsZxE1uxvce:iRJBvC4CqekjJHt8S2u5ygbbU1Bjeg=="
+                }
+            },
+            "resources": [
+                {
+                    "urn": "urn:pulumi:aws-dev::NE-RPC-Demo::pulumi:pulumi:Stack::NE-RPC-Demo-aws-dev",
+                    "custom": false,
+                    "type": "pulumi:pulumi:Stack",
+                    "outputs": {
+                        "DataBucketArn": "arn:aws:s3:::ne-rpc-demo-data-dev-f8b6bbf",
+                        "DataBucketName": "ne-rpc-demo-data-dev-f8b6bbf",
+                        "FunctionInvokeArn": "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-2:932497324633:function:quote-fetch-lambda-496c57d/invocations"
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:aws-dev::NE-RPC-Demo::pulumi:providers:aws::default_3_4_0",
+                    "custom": true,
+                    "id": "bde387f6-3893-48cc-bc8c-0e79afea932b",
+                    "type": "pulumi:providers:aws",
+                    "inputs": {
+                        "region": "eu-west-2",
+                        "version": "3.4.0"
+                    },
+                    "outputs": {
+                        "region": "eu-west-2",
+                        "version": "3.4.0"
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:aws-dev::NE-RPC-Demo::aws:s3/bucket:Bucket::ne-rpc-demo-data-dev",
+                    "custom": true,
+                    "id": "ne-rpc-demo-data-dev-f8b6bbf",
+                    "type": "aws:s3/bucket:Bucket",
+                    "inputs": {
+                        "__defaults": [
+                            "acl",
+                            "bucket",
+                            "forceDestroy"
+                        ],
+                        "acl": "private",
+                        "bucket": "ne-rpc-demo-data-dev-f8b6bbf",
+                        "forceDestroy": false,
+                        "tags": {
+                            "User:Project": "NE-RPC-Demo",
+                            "User:Stack": "aws-dev",
+                            "__defaults": []
+                        }
+                    },
+                    "outputs": {
+                        "accelerationStatus": "",
+                        "acl": "private",
+                        "arn": "arn:aws:s3:::ne-rpc-demo-data-dev-f8b6bbf",
+                        "bucket": "ne-rpc-demo-data-dev-f8b6bbf",
+                        "bucketDomainName": "ne-rpc-demo-data-dev-f8b6bbf.s3.amazonaws.com",
+                        "bucketRegionalDomainName": "ne-rpc-demo-data-dev-f8b6bbf.s3.eu-west-2.amazonaws.com",
+                        "corsRules": [],
+                        "forceDestroy": false,
+                        "grants": [],
+                        "hostedZoneId": "Z3GKZC51ZF0DB4",
+                        "id": "ne-rpc-demo-data-dev-f8b6bbf",
+                        "lifecycleRules": [],
+                        "loggings": [],
+                        "objectLockConfiguration": null,
+                        "region": "eu-west-2",
+                        "replicationConfiguration": null,
+                        "requestPayer": "BucketOwner",
+                        "serverSideEncryptionConfiguration": null,
+                        "tags": {
+                            "User:Project": "NE-RPC-Demo",
+                            "User:Stack": "aws-dev"
+                        },
+                        "versioning": {
+                            "enabled": false,
+                            "mfaDelete": false
+                        },
+                        "website": null
+                    },
+                    "parent": "urn:pulumi:aws-dev::NE-RPC-Demo::pulumi:pulumi:Stack::NE-RPC-Demo-aws-dev",
+                    "provider": "urn:pulumi:aws-dev::NE-RPC-Demo::pulumi:providers:aws::default_3_4_0::bde387f6-3893-48cc-bc8c-0e79afea932b",
+                    "propertyDependencies": {
+                        "tags": null
+                    }
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "kind": "destroy",
+    "startTime": 1600969021,
+    "message": "",
+    "environment": {
+        "exec.kind": "cli"
+    },
+    "config": {
+        "NE-RPC-Demo:DeployTo": "dev",
+        "aws:region": "eu-west-2"
+    },
+    "result": "failed",
+    "endTime": 1600969029,
+    "resourceChanges": {
+        "delete": 4
+    }
+}

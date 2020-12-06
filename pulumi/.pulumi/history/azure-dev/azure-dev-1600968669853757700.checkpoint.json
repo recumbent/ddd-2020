@@ -1,17 +1,17 @@
 {
     "version": 3,
     "checkpoint": {
-        "stack": "azure-test",
+        "stack": "azure-dev",
         "latest": {
             "manifest": {
-                "time": "2020-09-24T18:32:37.5750257+01:00",
+                "time": "2020-09-24T18:31:09.8337572+01:00",
                 "magic": "025dfc1d117429348e6e7b803d2a4553ccb696ddad474136fcac4f7fa8123e00",
                 "version": "v2.10.2"
             },
             "secrets_providers": {
                 "type": "passphrase",
                 "state": {
-                    "salt": "v1:yy7fEqgkEHo=:v1:31xpguKAAb9AO1ji:AodWA72+BS4/LZVcvgW0byVeC3K6RQ=="
+                    "salt": "v1:C90gBTW9gN4=:v1:BqfxQLSe5K4lA1n5:ynZygNNWH9JXlmB8mUwKaNHyM8DOcQ=="
                 }
             }
         }

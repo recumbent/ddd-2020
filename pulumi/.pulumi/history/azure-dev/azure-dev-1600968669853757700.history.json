@@ -1,0 +1,17 @@
+{
+    "kind": "destroy",
+    "startTime": 1600968609,
+    "message": "",
+    "environment": {
+        "exec.kind": "cli"
+    },
+    "config": {
+        "NE-RPC-Demo:DeployTo": "dev",
+        "azure:location": "UKSouth"
+    },
+    "result": "succeeded",
+    "endTime": 1600968669,
+    "resourceChanges": {
+        "delete": 8
+    }
+}
