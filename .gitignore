@@ -12,3 +12,5 @@ pulumi/.pulumi/backups/
 
 *.user
 *.suo
+
+.fake
