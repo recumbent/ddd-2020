@@ -11,10 +11,12 @@ class AzureStack : Stack
         
         // Create an Azure Resource Group
         var resourceGroupName = $"rg-ne-rpc-demo-{deployTo}";
-        var resourceGroup = new ResourceGroup(resourceGroupName, new ResourceGroupArgs 
-        { 
-            Name = resourceGroupName 
-        });
+        var resourceGroup = new ResourceGroup(
+            resourceGroupName,
+            new ResourceGroupArgs 
+            { 
+                Name = resourceGroupName 
+            });
 
         // Create an Azure Storage Account
         var storageAccount = new Account($"nerpcdemo{deployTo}", new AccountArgs

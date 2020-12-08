@@ -59,7 +59,8 @@ class AzureStack : Stack
             Source = new FileArchive("../azure-func/publish")
         });
 
-        var codeBlobUrl = SharedAccessSignature.SignedBlobReadUrl(blob, storageAccount);
+        var codeBlobUrl = 
+            SharedAccessSignature.SignedBlobReadUrl(blob, storageAccount);
 
         var app = new FunctionApp("app", new FunctionAppArgs
         {
