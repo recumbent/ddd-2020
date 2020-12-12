@@ -307,9 +307,9 @@ So time for some how.
 ---
 
 [drag=100 20, drop=top, fit=0.8]
-# Demo System Architecture
+# Demo System "Architecture"
 
-![drag=100 80, drop=0 20 fit-5.0](images/Architecture.png)
+![drag=100 80, drop=0 20, width=1500](images/Architecture.png)
 
 Note:
 
