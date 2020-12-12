@@ -1,11 +1,56 @@
 [drag=100]
 
-# Infrastructure as (.NET) code in Pulumi 
+![drag=100](images/Slide1.jpg)
 
 ---
 
 [drag=100]
-# Cloud Software Engineer
+
+
+![drag=100](images/Slide2.jpg)
+
+---
+
+[drag=100]
+
+
+![drag=100](images/Slide3.jpg)
+
+---
+
+[drag=100]
+
+
+![drag=100](images/Slide4.jpg)
+
+---
+
+[drag=100]
+
+
+![drag=100](images/Slide5.jpg)
+
+---
+
+[drag=100]
+
+# Cloud Infrastructure as (.NET) code in Pulumi 
+
+---
+
+[drag=50 100, drop=left, flow=col]
+
+## James Murphy
+
+### @recumbent
+
+Twitter & Github
+
+![drag=50 50, drop=51 0, set=fragment](images/1979.jpg)
+
+[drag=50 50, drop=51 51, set=fragment]
+### Cloud Software Engineer
+
 
 Note:
 
@@ -21,14 +66,14 @@ Hi, my name is James Murphy, my job title is cloud software engineer, I first la
 
 Note:
 
-Pulumi is a tool for defining infrastructure as code - genuine source code, its also a tool and a service for managing deployment of that infrastructure
+Pulumi is a tool for defining infrastructure as code - programming language type source code, its also a tool and a service for managing deployment of that infrastructure
 
 ---
-[drag=100 20, drop=top]
+[drag=50 100, drop=left]
 
 # Questions:
 
-@ul[drag=100 80, drop=center, fit=2.0]
+@ul[drag=5- 100, drop=right, fit=1.5]
 * What is infrastructure as code?
 * Why is it a good idea?
 * If it _is_ a good idea, why Pulumi?
@@ -179,9 +224,12 @@ The other advantage we gain from having infrastructure defined in text files (wh
 
 ---
 
-[drag=100]
 
-@ul[]
+[drag=40 100, drop=left]
+
+## Good things...
+
+@ul[drag=60 100, drop=right, fit=2.0]
 - Repeatable
 - Deploy to multiple environments
 - Deploy at whim
@@ -190,10 +238,11 @@ The other advantage we gain from having infrastructure defined in text files (wh
 
 Note: 
 
-At this point its clear that defining our infrastructure in a text file is a good thing
+At this point I think its clear that defining our infrastructure in a text file is a good thing
 
-- It makes things repeatable
-- It makes it possible to deploy to as many environments as we want as and when we want
+- It makes deployment repeatable
+- It makes it possible to deploy to as many environments as we want
+- It makes it trivial to deploy as and when we want
 - We can use version control which gives us a history and the ability to audit and control what we do.
 
 ---
@@ -202,7 +251,7 @@ At this point its clear that defining our infrastructure in a text file is a goo
 
 # Pulumi
 
-@ul[drag=50 100, drop=right]
+@ul[drag=50 100, drop=right, fit=1.5]
 * Language independence
 * Deployment management
 * Platform independence
@@ -210,64 +259,38 @@ At this point its clear that defining our infrastructure in a text file is a goo
 
 Note:
 
-On top of this Pulumi gives us
+On top of this Pulumi gives us, just to start with...
 
 - A degree of language independence
 - A service/system for managing multiple deployments of the same system and of diverse systems
 - A degree of target platform independence
-
+  
 ---
-[drag=100]
 
-## Providers 1
+![drag=40 16, drop=5 5, set=fragment, animate=slideleft](images/pulumi-providers-01.png)
 
-![drag=80, fit=5.0](images/pulumi-providers-01.png)
+![drag=40 40, drop=15 15, set=fragment, animate=slideleft](images/pulumi-providers-02.png)
+
+![drag=40 50, drop=25 25, set=fragment, animate=slideleft](images/pulumi-providers-03.png)
+
+![drag=35 60, drop=35 35, set=fragment, animate=slideleft](images/pulumi-providers-04.png)
 
 Note:
 
-The usual suspects
+ - The usual suspects of AWS, Azure, Google Cloud, and Kubernetes
+ - More cloud providers - like Alibaba and Digital Ocean
+ - Infrastructure providers - docker, pager duty, azure devops
+ - And diverse other things - Databases, Monitoring, Network, and version control - although I think Github (for example) is much closer to a full development lifecycle tool
 
 ---
-[drag=100]
 
-## Providers 2
-
-![Pulumi Cloud Providers](images/pulumi-providers-02.png)
-
-Note:
-
-More cloud providers
-
----
-[drag=100]
-
-## Providers 3
-
-![Pulumi Cloud Providers](images/pulumi-providers-03.png)
-
-Note:
-
-Infrastructure
-
----
-[drag=100]
-
-## Providers 4
-
-![Pulumi Cloud Providers](images/pulumi-providers-04.png)
-
-Note:
-
-And other things
-
----
 [drag=100 drop=center]
 
 # Pulumi _all_ the things
 
 Note:
 
-I want to use pulumi for everything... think about this in the context of onboarding and off-boarding a developer, and the access and privileges they need.
+I want to use pulumi for everything... think about this in the context of onboarding and off-boarding a developer, or any other technical specialist, and the access and privileges they need to the services you use. But also in terms of having all your repositories set up in a consistent manner (and knowing what that should look like).
 
 ---
 
@@ -329,7 +352,7 @@ The entry point is in program.cs, at this point it does very little, it magicall
 
 ---
 
-@code[drag=99, drop=center, cs, fit=0.75](code/010-Pulumi-new/MyStack.cs)
+@code[drag=99, drop=center, cs,  fit=0.75](code/010-Pulumi-new/MyStack.cs)
 
 @[9-10](Creates a resource group)
 @[13-18](Creates a storage account in the resource group)
@@ -352,7 +375,7 @@ I want to make a few changes before I deploy that though
 
 ---
 
-@code[drag=99, drop=center, cs, fit=0.75](code/020-Intial-deploy/AzureStack.cs)
+@code[drag=99, drop=center, cs code-reveal-slow, fit=0.75](code/020-Intial-deploy/AzureStack.cs)
 
 @[5-7](Rename the stack)
 @[9-10](Read `DeployTo` from stack config)
@@ -361,10 +384,12 @@ I want to make a few changes before I deploy that though
 
 Note:
 
-Put this back
-&lang=cs code-max code-reveal-slow code-wrap
+The template never matches what we really want...
 
-The connection string is supposed to be a secret!
+- We'll give the stack a better name
+- We'll read deploy to from the configuration - and fail if its not there
+- We'll explicitly name the resource group - by default Pulumi appends random numbers for name - this is great for ensuring uniqueness but not entirely dev friendly
+- And of cours the connection string is supposed to be a secret 
 
 ---
 [drag=100]
@@ -373,25 +398,32 @@ The connection string is supposed to be a secret!
 
 Note:
 
-Its time we actually deployed something
+Its time we actually deployed something... 
 
 ---
 ### Empty Subscription
 
 ![drag=100](images/no-resource-groups.png)
 
+Note:
+
+The azure subscription before I started - no resources of any kind
+
 ---?terminal=sessions/pulumi-up.cast&font=20px&theme=monokai&poster=npt:0:00&color=#DDDDDD
 
 Note:
 
-Deploy the tweaked stack
-
+as this is a recording some sequences may have been shortened...
 ---
 
 [drag=20 10, drop=topleft]
 ### It lives!
 
 ![drag=90 90, drop=10 10](images/resource-group-002.png)
+
+Note:
+
+And now the same azure subscription - this time with resources
 
 ---
 
@@ -403,7 +435,7 @@ Deploy the tweaked stack
 
 Note:
 
-TODO: Put this back? Change the zoom?
+So how does pulumi keep track, well it uses a wall of JSON...
 
 Here we see the URN identifying the resource for pulumi
 An id which is the _azure_ id
@@ -433,7 +465,7 @@ This is the startup code for the function we're going to deploy - it in F# but t
 
 ---
 
-@code[drag=99, cs, fit=0.75](code/040-Add-function/AzureStack.cs)
+@code[drag=99, cs code-reveal-slow, fit=0.75](code/040-Add-function/AzureStack.cs)
 
 @[29-41](Two containers)
 @[43-52](An app service plan)
@@ -446,14 +478,24 @@ This is the startup code for the function we're going to deploy - it in F# but t
 
 Note:
 
-&lang=csharp code-max code-reveal-slow code-wrap
-
 Well add the resources to our stack
 
 - Firstly a couple of containers - one for the packaged code and one for the runtime data
 - Secondly an application service plan - the Sku is arbitrary magic
 
-- That's 93 lines including whitespace and you can see the relation between the pieces
+- That's a smidge over 90 lines including whitespace and you can see the relation between the pieces
+
+---
+
+@code[drag=30 100, drop=left, json, fit=0.4](code/040-Add-function/AzureStack.cs?lines=-1-31)
+
+@code[drag=30 100, drop=center, json, fit=0.4](code/040-Add-function/AzureStack.cs?lines=-32-62)
+
+@code[drag=30 100, drop=right, json, fit=0.4](code/040-Add-function/AzureStack.cs?lines=-63-93)
+
+Note:
+
+And here's the whole thing, you might almost be able to read this
 
 ---
 
@@ -568,7 +610,7 @@ Everything in this turned out to be surprisingly straightforward, the problem wa
 
 ---
 
-@code[drag=99, fs, fit=0.75](code/070-Meta/Program.fs)
+@code[drag=99, fs code-wrap, fit=0.75](code/070-Meta/Program.fs)
 
 @[199-203](Combine the output from two sets  of infrastructure)
 @[36-50](Add DNS for a domain)
@@ -615,31 +657,38 @@ Note:
 Ok... so that barely touches the surface of what's possible - but this is _all code_ and hopefully code that you understand be that C#, F#, Python, Go, or Typescript. 
 
 ---
-[drag=100]
+[drag=40 100, drop=left]
 
 ## What Have I missed
 
+
+@ul[drag=60 100, drop=left]
 * Secrets
 * Passing values between stacks
 * Taking advantage of code to remove boilerplate and enforce standards
 * Shiny new Automation API
+@ul
 
 ---
-[drag=100]
+[drag=40 100, drop=left]
 
 ## Open questions
 
+@ul[drag=60 100, drop=left]
 * How to architect your _stacks_
+@ul
 
 ---
-[drag=100]
+[drag=40 100, drop=left]
 
 ## Potential issues
 
+@ul[drag=60 100, drop=left]
 * Updates to providers
   * _But_ next gen providers are coming
 * Independent of the cloud providers
 * Documentation... (impossible problem CDK is the same)
+@ul
 
 ---
 [drag=40 100, drop=left]
@@ -647,13 +696,14 @@ Ok... so that barely touches the surface of what's possible - but this is _all c
 ## Resources
 
 [drag=60 100, drop=right]
-* https://gitpitch.com/recumbent/ne-rpc-2020/main
+* https://github.com/recumbent/ddd-2020
 * https://pulumi.com
 * https://github.com/pulumi
   * https://github.com/pulumi/examples
   * Pulumi Community Slack
 * https://twitter.com/recumbent
 * https://blog.murph.me.uk - when I've recovered...
+* https://gitpitch.com/recumbent/ddd-2020/main
 
 ---
 [drag=100]

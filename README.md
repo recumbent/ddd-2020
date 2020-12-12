@@ -1,14 +1,16 @@
-# ne-rpc-2020
+# DDD-20202
 
-NE RPC 2020 Back to School Presentation
+DDD 2020 Presentation on Pulumi
+
+This is basically the same presentation I ran for NE-RPC-2020 - there wasn't really enough lead time to re-do the demos so...
 
 ## Random helpful things
 
 \\wsl$\Ubuntu-18.04\tmp
 
-docker run -it -v c:\dev\ne-rpc-2020:/repo -p 9000:9000 gitpitch/desktop:pro
+docker run -it -v c:\dev\ddd-2020:/repo -p 9000:9000 gitpitch/4.0
 
-[Gitpitch online](https://gitpitch.com/recumbent/ne-rpc-2020)
+[Gitpitch online](https://gitpitch.com/recumbent/ddd-2020/main)
 
 ### az snippets
 
