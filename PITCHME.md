@@ -487,11 +487,9 @@ Well add the resources to our stack
 
 ---
 
-@code[drag=30 100, drop=left, json, fit=0.4](code/040-Add-function/AzureStack.cs?lines=-1-31)
+@code[drag=49 100, drop=left, cs, fit=0.37](code/040-Add-function/AzureStack.cs?lines=1-47)
 
-@code[drag=30 100, drop=center, json, fit=0.4](code/040-Add-function/AzureStack.cs?lines=-32-62)
-
-@code[drag=30 100, drop=right, json, fit=0.4](code/040-Add-function/AzureStack.cs?lines=-63-93)
+@code[drag=49 100, drop=right, cs, fit=0.37](code/040-Add-function/AzureStack.cs?lines=48-94)
 
 Note:
 
